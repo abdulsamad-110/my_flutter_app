@@ -65,7 +65,6 @@ class LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20.0),
 
-             
               Form(
                 key: _formKey,
                 child: Padding(
