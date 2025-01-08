@@ -5,10 +5,11 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final ValueChanged<String> onChanged;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String? Function(String?)? validator;
   final FocusNode? focusNode;
-  final VoidCallback? onSubmit; // Add onSubmit callback
+  final VoidCallback? onSubmit;
 
   const CustomTextField({
     super.key,
@@ -16,6 +17,7 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     required this.onChanged,
     this.obscureText = false,
+    this.prefixIcon,
     this.suffixIcon,
     this.validator,
     this.focusNode,
@@ -30,6 +32,7 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         labelText: labelText,
+        prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),

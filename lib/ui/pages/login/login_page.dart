@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/ui/utils/routes.dart';
 import 'package:my_flutter_app/ui/widgets/custom_textfield.dart';
+import 'package:my_flutter_app/ui/widgets/name_passwidget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,29 +18,6 @@ class LoginPageState extends State<LoginPage> {
   bool obscurePassword = true;
 
 
-  // Define FocusNodes
-  FocusNode usernameFocus = FocusNode();
-  FocusNode passFocus = FocusNode();
-
-  ///// Validation function for username
-  String? validateUsername(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a username';
-    }
-    return null;
-  }
-
-  ///// Validation function for password
-  String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a password';
-    } else if (value.length < 5) {
-      return 'Password must be at least 5 characters';
-    }
-    return null;
-  }
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +27,7 @@ class LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.only(
             left: 20.0,
             right: 20.0,
-            top: MediaQuery.of(context).padding.top + 30,
+            top: MediaQuery.of(context).padding.top + 20.0,
           ),
           child: Column(
             children: [
@@ -78,49 +56,8 @@ class LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     children: [
-                      ///// Username CustomTextField
-                      CustomTextField(
-                        labelText: "Username",
-                        hintText: "Enter username",
-                        onChanged: (value) {
-                          setState(() {
-                            username = value;
-                          });
-                        },
-                        focusNode: usernameFocus,
-                        validator: validateUsername,
-                        onSubmit: () {
-                          FocusScope.of(context).requestFocus(passFocus);
-                        },
-                      ),
-                      const SizedBox(height: 15.0),
-
-                      ///// Password CustomTextField
-                      CustomTextField(
-                        labelText: "Password",
-                        hintText: "Enter password",
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            obscurePassword
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.deepPurple,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              obscurePassword = !obscurePassword;
-                            });
-                          },
-                        ),
-                        focusNode: passFocus,
-                        obscureText: obscurePassword,
-                        validator: validatePassword,
-                        onChanged: (value) {
-                          setState(() {
-                            password = value;
-                          });
-                        },
-                      ),
+                      ///// widget
+                      NamePassWidget(),
                       const SizedBox(height: 30.0),
 
                       ///// Animated Login Button
